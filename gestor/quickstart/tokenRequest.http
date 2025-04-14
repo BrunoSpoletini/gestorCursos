@@ -1,13 +1,22 @@
+### POST registering user
+POST http://127.0.0.1:8000/api/register/ HTTP/1.1
+content-type: application/json
+
+{
+    "username": "jhon5", 
+    "password": "pass", 
+    "role": "instructor"
+}
+
+### POST Requesting a token
 POST http://127.0.0.1:8000/api/token/ HTTP/1.1
 content-type: application/json
 
-{"username": "admin", "password": "mypassword"}
+{"username": "admin", "password": "admin"}
 
-###
-
-GET http://127.0.0.1:8000/users/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NTk0ODMwLCJpYXQiOjE3NDQ1OTEyMzAsImp0aSI6ImRjOGMyYTk4OTBjZTQ5ZDk4YjZhMjU3NmVjNmMzMzBkIiwidXNlcl9pZCI6MX0.LIXXrLFEZrtMlyRE7mfhEf2xMAmWGGR1JEwOM_YwfuM
-content-type: application/json
+### GET user list
+GET http://127.0.0.1:8000/api/users/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjUyNTI2LCJpYXQiOjE3NDQ2NDg5MjYsImp0aSI6IjdmM2JiMzllYzdjNjRkYTliZGRjMDY1OGE4ZmMxNjcyIiwidXNlcl9pZCI6Nn0.xoydzOksvYMKNg18rHaBxSSgs99Wvbkg-FyvhX9VfJA
 
 ###
 

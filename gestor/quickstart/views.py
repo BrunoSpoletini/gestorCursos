@@ -1,24 +1,23 @@
-from django.contrib.auth.models import Group, User
-from rest_framework import permissions, viewsets
+from django.contrib.auth.models import Group
+from rest_framework import permissions, viewsets, generics
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from .permissions import IsInstructor, IsStudent, IsAdmin
+from django.contrib.auth import get_user_model
+from .serializers import UserSerializer
 
-from .serializers import GroupSerializer, UserSerializer
+User = get_user_model()
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
+# GET /users/
+# Returns a list of all users
+class UserView(generics.ListAPIView):  
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     authentication_classes = [JWTAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAdmin]
 
-
-# class GroupViewSet(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows groups to be viewed or edited.
-#     """
-#     queryset = Group.objects.all().order_by('name')
-#     serializer_class = GroupSerializer
-#     authentication_classes = [JWTAuthentication]
-#     permission_classes = [permissions.IsAuthenticated]
+# POST /register/
+# Allows users to register with a username, password and role
+class UserRegisterView(generics.CreateAPIView):
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
