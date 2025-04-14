@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'quickstart',
+    'cursos',
 ]
 
 MIDDLEWARE = [
@@ -112,7 +112,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'quickstart.User'
+AUTH_USER_MODEL = 'cursos.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
