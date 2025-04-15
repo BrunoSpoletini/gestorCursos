@@ -1,5 +1,6 @@
 To do's:
 - Finish implementing API's
+- Consider refactoring using modelViewSet
 - Error handling
 - Automated Testing
 - Consider Docker usage

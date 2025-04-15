@@ -5,16 +5,16 @@ POST http://127.0.0.1:8000/api/register/ HTTP/1.1
 content-type: application/json
 
 {
-    "username": "tom", 
+    "username": "charly", 
     "password": "pass", 
-    "role": "student"
+    "role": "instructor"
 }
 
 ### POST Requesting a token
 POST http://127.0.0.1:8000/api/token/ HTTP/1.1
 content-type: application/json
 
-{"username": "tom", "password": "pass"}
+{"username": "admin", "password": "admin"}
 
 ### POST Token refresh
 POST http://127.0.0.1:8000/api/token/refresh/ HTTP/1.1
@@ -43,7 +43,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ### GET course detail
 GET http://127.0.0.1:8000/api/courses/4 HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjY1MzU5LCJpYXQiOjE3NDQ2NjE3NTksImp0aSI6ImY5OTgzOWZlNDZmZDRiNDM5YjgxNmZkM2VhZjYwNTBkIiwidXNlcl9pZCI6NH0.C2w6KZV_TEAe0Bk70dSOmChSiDva6eUQ96iv0qlfYQw
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzM4ODM2LCJpYXQiOjE3NDQ3MzUyMzYsImp0aSI6IjljNGU1MGRkYzIzMTQ3MmI4NDI4MzNjZGYwODZlMTY0IiwidXNlcl9pZCI6MX0.x8Y8Hw7VJbpBkOb7q7Jvc6o-J7dVQorSJa_bJJiBZXk
 
 ###
 
@@ -52,11 +52,34 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST enroll course
 POST http://127.0.0.1:8000/api/enroll/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjgyNDAwLCJpYXQiOjE3NDQ2Nzg4MDAsImp0aSI6IjAwYzgxMmIwNTNlODRmMTliNWE2NzBhNDE4Zjc0Mzg1IiwidXNlcl9pZCI6NH0.1G8iNqpMXz3Y3gGAwnFk2F5fwyIay3ENAq46wviuFb0
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzI4MjQzLCJpYXQiOjE3NDQ3MjQ2NDMsImp0aSI6ImExYzk3YWI1MDczMzRlMWU4ZGVjYmMwYmQzZGM5Mjk2IiwidXNlcl9pZCI6NH0.o538AtLHU3l63Y_nUDjkEznMgGmAhq93VS3KCGslW1k
 
 {"course": 2}
+
+### GET enrollments list
+GET http://127.0.0.1:8000/api/my-enrollments/ HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzI3NjQxLCJpYXQiOjE3NDQ3MjQwNDEsImp0aSI6ImM0MzAzYWJlOTUzMzRlZmNiNjQyMmZhYmYyYjRiMWE0IiwidXNlcl9pZCI6NH0.qEFV-co7GDgjxhmlFjfYCpYmhPvLwEFVkZpjcOJ4RhA
 
 
 ###
 
 ### --- GRADES ---
+
+### POST grade a student
+POST http://127.0.0.1:8000/api/grades/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzM2NzczLCJpYXQiOjE3NDQ3MzMxNzMsImp0aSI6IjJiMGRhZDZiOTgyOTQ2MTY4MmE3ZGRjNDBjYTg0ZDRjIiwidXNlcl9pZCI6Nn0.ngNq0Z45a6eOpU80uIBd8Br_Q2LUS2Y5KtCaAmjHUt4
+
+{
+    "enrollment": 7,
+    "score": 10,
+    "comment": "loreipsum note"
+}
+
+### GET grades list for a student (student)
+GET http://127.0.0.1:8000/api/my-grades/ HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzM0NTg3LCJpYXQiOjE3NDQ3MzA5ODcsImp0aSI6ImRhZTI5NzJhN2ExYzQ1MWY4NDA2NGFiODdkY2VhNTFhIiwidXNlcl9pZCI6NH0.mSwl2RdNmePR811ziqbX3lq-gDN_Ho5wUGYZKl2_uGA
+
+### GET grades list for a course (instructor)
+GET http://127.0.0.1:8000/api/grades/course/2/ HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzM4ODM2LCJpYXQiOjE3NDQ3MzUyMzYsImp0aSI6IjljNGU1MGRkYzIzMTQ3MmI4NDI4MzNjZGYwODZlMTY0IiwidXNlcl9pZCI6MX0.x8Y8Hw7VJbpBkOb7q7Jvc6o-J7dVQorSJa_bJJiBZXk

@@ -27,19 +27,11 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class GradesSerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(read_only=True)
-    enrollment = serializers.PrimaryKeyRelatedField(read_only=True)
+    # enrollment = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = Grade
-        fields = ['id', 'enrollment', 'created_at', 'id_course', 'score', 'comment']
-# TO-DO
-    # def create(self, data):
-    #     request = self.context['request']
-    #     course = Course.objects.get(id=data['id_course'])
-    #     enrollment = Enrollment.objects.get(user=request.user, course=course)
-
-    #     data['enrollment'] = enrollment
-    #     return Grade.objects.create(**data)
+        fields = ['id', 'enrollment', 'created_at', 'score', 'comment']
     
 class EnrollmentSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(read_only=True)

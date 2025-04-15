@@ -1,5 +1,7 @@
 from django.contrib.auth.models import Group
-from rest_framework import permissions, viewsets, generics
+from rest_framework import mixins, permissions, viewsets, generics
+from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from . permissions import IsInstructor, IsStudent, IsAdmin
 from django.contrib.auth import get_user_model
@@ -47,16 +49,44 @@ class CourseCreateView(generics.CreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin | IsInstructor]
 
+# POST /api/grades/
+# GET /api/grades/course/<int:pk>/
+class GradeInstructorView(  mixins.CreateModelMixin,
+                            mixins.ListModelMixin,
+                            viewsets.GenericViewSet):
+    queryset = Grade.objects.all()
+    serializer_class = GradesSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdmin | IsInstructor]
 
+    @action(detail=False, methods=['get'], url_path='course/(?P<course_id>[^/.]+)')
+    def grades_by_course(self, request, course_id=None):
+        
+        try:
+            # Attempt to retrieve the course
+            course = Course.objects.get(pk=course_id)
+        except Course.DoesNotExist:
+            # Return a 404 response if the course does not exist
+            return Response({"detail": "Course not found."}, status=404)
 
+        # Check if the instructor is the creator of the course
+        if course.created_by != request.user:
+            return Response({"detail": "You do not have permission to view these grades."}, status=403)
 
-# # POST /api/grades/
-# class GradeStudentView(generics.CreateAPIView):
-#     queryset = Grade.objects.all()
-#     serializer_class = GradesSerializer
-#     authentication_classes = [JWTAuthentication]
-#     permission_classes = [IsAdmin | IsInstructor]
+        # Retrieve grades for 
+        grades = Grade.objects.filter(enrollment__course=course)
+        serializer = self.get_serializer(grades, many=True)
+        return Response(serializer.data)
 
+# GET /api/my-grades/
+class GradeStudentView(generics.ListAPIView):
+    queryset = Grade.objects.all()
+    serializer_class = GradesSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdmin | IsStudent]
+    def get_queryset(self):
+        user = self.request.user
+        return Grade.objects.filter(enrollment__user=user)
 
 # POST /api/enroll/
 class EnrollmentView(generics.CreateAPIView):
@@ -76,4 +106,4 @@ class EnrollmentsUserView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Grade.objects.filter(enrollment__user=user)
+        return Enrollment.objects.filter(user=user)
