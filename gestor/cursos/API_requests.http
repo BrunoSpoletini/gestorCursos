@@ -1,0 +1,62 @@
+### --- USUARIOS ---
+
+### POST registering user
+POST http://127.0.0.1:8000/api/register/ HTTP/1.1
+content-type: application/json
+
+{
+    "username": "tom", 
+    "password": "pass", 
+    "role": "student"
+}
+
+### POST Requesting a token
+POST http://127.0.0.1:8000/api/token/ HTTP/1.1
+content-type: application/json
+
+{"username": "tom", "password": "pass"}
+
+### POST Token refresh
+POST http://127.0.0.1:8000/api/token/refresh/ HTTP/1.1
+content-type: application/json
+
+{"refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0NDc1ODM5MiwiaWF0IjoxNzQ0NjcxOTkyLCJqdGkiOiJhZWY1Njc1ZDdmOGE0OGE1YTAyNjg1YTQ3MmYxMWEzZSIsInVzZXJfaWQiOjR9.D9ZSGXlBEzjkLZDoWP6VumXTfYoTC_5hb9qf1irDdfg"}
+
+### GET user list
+GET http://127.0.0.1:8000/api/users/ HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjU5NjUyLCJpYXQiOjE3NDQ2NTYwNTIsImp0aSI6IjgyYjI2YTEzNTIyMTRiYjhiOGY1ZGQ4Yzk5NjYwNmFjIiwidXNlcl9pZCI6MX0.jfSGOl0LHdibirF8PIahyxtwxGhtT8fDIh1Q1utLSZc
+
+### 
+
+### --- CURSOS ---
+
+### GET course list
+GET http://127.0.0.1:8000/api/courses/ HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjY1MzU5LCJpYXQiOjE3NDQ2NjE3NTksImp0aSI6ImY5OTgzOWZlNDZmZDRiNDM5YjgxNmZkM2VhZjYwNTBkIiwidXNlcl9pZCI6NH0.C2w6KZV_TEAe0Bk70dSOmChSiDva6eUQ96iv0qlfYQw
+
+### POST create course
+POST http://127.0.0.1:8000/api/courses/create/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjYyMTE1LCJpYXQiOjE3NDQ2NTg1MTUsImp0aSI6ImNhODFlZDdkZjJmMTRjZDA4MTk5NTZiOGY2NGM4NzU5IiwidXNlcl9pZCI6M30.ccObdnTND3jUFbn2Tcfz0O2gxsyccQXM_cIGUXBUjZ0
+
+{"name": "Robotica", "description": "loreipsum"}
+
+### GET course detail
+GET http://127.0.0.1:8000/api/courses/4 HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjY1MzU5LCJpYXQiOjE3NDQ2NjE3NTksImp0aSI6ImY5OTgzOWZlNDZmZDRiNDM5YjgxNmZkM2VhZjYwNTBkIiwidXNlcl9pZCI6NH0.C2w6KZV_TEAe0Bk70dSOmChSiDva6eUQ96iv0qlfYQw
+
+###
+
+### --- ENROLLMENTS ---
+
+### POST enroll course
+POST http://127.0.0.1:8000/api/enroll/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjgyNDAwLCJpYXQiOjE3NDQ2Nzg4MDAsImp0aSI6IjAwYzgxMmIwNTNlODRmMTliNWE2NzBhNDE4Zjc0Mzg1IiwidXNlcl9pZCI6NH0.1G8iNqpMXz3Y3gGAwnFk2F5fwyIay3ENAq46wviuFb0
+
+{"course": 2}
+
+
+###
+
+### --- GRADES ---

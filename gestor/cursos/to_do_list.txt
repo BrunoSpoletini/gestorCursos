@@ -1,0 +1,11 @@
+To do's:
+- Finish implementing API's
+- Error handling
+- Automated Testing
+- Consider Docker usage
+- Health endpoint
+- Requirements.txt (example: https://github.com/MehediMK/Django-REST-APIs-with-JWT-Authentication?source=post_page-----28efa84666fe--------------------------------------- )
+- Make readme.txt
+
+In the near future:
+- Frontend using react

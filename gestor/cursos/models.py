@@ -29,6 +29,9 @@ class Enrollment(models.Model):
     def __str__(self):
         return f"{self.user.username} enrolled in {self.course.name}"
     
+    def validate_enrollment(self):
+        return not Enrollment.objects.filter(user=self.user, course=self.course).exists()
+    
 class Grade(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
     score = models.DecimalField(max_digits=5, decimal_places=1)
