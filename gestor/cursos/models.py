@@ -5,13 +5,12 @@ from django.conf import settings
 
 
 class User(AbstractUser):
-    ROLES = ( 
-        ('admin', 'Admin'),
-        ('student', 'Student'),
-        ('instructor', 'Instructor'),
-    )
+    class Roles(models.TextChoices):
+        ADMIN = 'admin', 'Admin'
+        STUDENT = 'student', 'Student'
+        INSTRUCTOR = 'instructor', 'Instructor'
 
-    role = models.CharField(max_length=10, choices=ROLES)
+    role = models.CharField(max_length=10, choices=Roles.choices)
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
