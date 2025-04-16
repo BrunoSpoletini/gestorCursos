@@ -5,9 +5,9 @@ POST http://127.0.0.1:8000/api/register/ HTTP/1.1
 content-type: application/json
 
 {
-    "username": "charly", 
+    "username": "Laura", 
     "password": "pass", 
-    "role": "instructor"
+    "role": "admin"
 }
 
 ### POST Requesting a token
@@ -24,7 +24,7 @@ content-type: application/json
 
 ### GET user list
 GET http://127.0.0.1:8000/api/users/ HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjU5NjUyLCJpYXQiOjE3NDQ2NTYwNTIsImp0aSI6IjgyYjI2YTEzNTIyMTRiYjhiOGY1ZGQ4Yzk5NjYwNmFjIiwidXNlcl9pZCI6MX0.jfSGOl0LHdibirF8PIahyxtwxGhtT8fDIh1Q1utLSZc
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
 
 ### 
 
@@ -32,18 +32,18 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ### GET course list
 GET http://127.0.0.1:8000/api/courses/ HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjY1MzU5LCJpYXQiOjE3NDQ2NjE3NTksImp0aSI6ImY5OTgzOWZlNDZmZDRiNDM5YjgxNmZkM2VhZjYwNTBkIiwidXNlcl9pZCI6NH0.C2w6KZV_TEAe0Bk70dSOmChSiDva6eUQ96iv0qlfYQw
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
 
 ### POST create course
-POST http://127.0.0.1:8000/api/courses/create/ HTTP/1.1
+POST http://127.0.0.1:8000/api/courses/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NjYyMTE1LCJpYXQiOjE3NDQ2NTg1MTUsImp0aSI6ImNhODFlZDdkZjJmMTRjZDA4MTk5NTZiOGY2NGM4NzU5IiwidXNlcl9pZCI6M30.ccObdnTND3jUFbn2Tcfz0O2gxsyccQXM_cIGUXBUjZ0
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
 
-{"name": "Robotica", "description": "loreipsum"}
+{"name": "Politica 4", "description": "loreipsumBotomText"}
 
 ### GET course detail
-GET http://127.0.0.1:8000/api/courses/4 HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzM4ODM2LCJpYXQiOjE3NDQ3MzUyMzYsImp0aSI6IjljNGU1MGRkYzIzMTQ3MmI4NDI4MzNjZGYwODZlMTY0IiwidXNlcl9pZCI6MX0.x8Y8Hw7VJbpBkOb7q7Jvc6o-J7dVQorSJa_bJJiBZXk
+GET http://127.0.0.1:8000/api/courses/9 HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
 
 ###
 
@@ -52,13 +52,13 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST enroll course
 POST http://127.0.0.1:8000/api/enroll/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzI4MjQzLCJpYXQiOjE3NDQ3MjQ2NDMsImp0aSI6ImExYzk3YWI1MDczMzRlMWU4ZGVjYmMwYmQzZGM5Mjk2IiwidXNlcl9pZCI6NH0.o538AtLHU3l63Y_nUDjkEznMgGmAhq93VS3KCGslW1k
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzU2NTQwLCJpYXQiOjE3NDQ3NTI5NDAsImp0aSI6IjViZDMwY2RhYmJmMTRhZTliZDExZGEzYzI2M2YzZGEyIiwidXNlcl9pZCI6MX0.BgvP6nwXH4Wqb0ZmlJzi2tlL0V8uBzw2yKLJ8cKm27k
 
-{"course": 2}
+{"course": 1}
 
 ### GET enrollments list
 GET http://127.0.0.1:8000/api/my-enrollments/ HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzI3NjQxLCJpYXQiOjE3NDQ3MjQwNDEsImp0aSI6ImM0MzAzYWJlOTUzMzRlZmNiNjQyMmZhYmYyYjRiMWE0IiwidXNlcl9pZCI6NH0.qEFV-co7GDgjxhmlFjfYCpYmhPvLwEFVkZpjcOJ4RhA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
 
 
 ###
@@ -68,18 +68,18 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST grade a student
 POST http://127.0.0.1:8000/api/grades/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzM2NzczLCJpYXQiOjE3NDQ3MzMxNzMsImp0aSI6IjJiMGRhZDZiOTgyOTQ2MTY4MmE3ZGRjNDBjYTg0ZDRjIiwidXNlcl9pZCI6Nn0.ngNq0Z45a6eOpU80uIBd8Br_Q2LUS2Y5KtCaAmjHUt4
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzY5MjUzLCJpYXQiOjE3NDQ3NjU2NTMsImp0aSI6IjAzNzA1NDllM2Y3NzQ3NWM4MmE4MGY3NGY2ZWRiYWUzIiwidXNlcl9pZCI6MX0.PybiX3D376tVncGxpkGSXfGSTZOnOKX8bdqgfEOP2y0
 
 {
-    "enrollment": 7,
+    "enrollment": 12,
     "score": 10,
     "comment": "loreipsum note"
 }
 
 ### GET grades list for a student (student)
 GET http://127.0.0.1:8000/api/my-grades/ HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzM0NTg3LCJpYXQiOjE3NDQ3MzA5ODcsImp0aSI6ImRhZTI5NzJhN2ExYzQ1MWY4NDA2NGFiODdkY2VhNTFhIiwidXNlcl9pZCI6NH0.mSwl2RdNmePR811ziqbX3lq-gDN_Ho5wUGYZKl2_uGA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
 
 ### GET grades list for a course (instructor)
 GET http://127.0.0.1:8000/api/grades/course/2/ HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzM4ODM2LCJpYXQiOjE3NDQ3MzUyMzYsImp0aSI6IjljNGU1MGRkYzIzMTQ3MmI4NDI4MzNjZGYwODZlMTY0IiwidXNlcl9pZCI6MX0.x8Y8Hw7VJbpBkOb7q7Jvc6o-J7dVQorSJa_bJJiBZXk
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs

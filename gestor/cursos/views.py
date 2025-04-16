@@ -67,9 +67,6 @@ class EnrollmentView(generics.CreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin | IsStudent]
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
 class EnrollmentsUserView(generics.ListAPIView):
     """
     GET /api/my-enrollments/ - Student
