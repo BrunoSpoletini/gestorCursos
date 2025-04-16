@@ -43,7 +43,7 @@ Then complete the .env file with your PosgreSQL database parameters.
 
    ```bash
    cd gestor
-   python databaseSetup.py
+   python dbSetup.py
    python manage.py makemigrations
    python manage.py migrate
    ```
