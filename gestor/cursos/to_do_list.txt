@@ -1,9 +1,9 @@
 To do's:
+- Make a script for creating setting up the posgres database
 - Automated Testing
 - Consider Docker usage
 - Health endpoint
-- Requirements.txt (example: https://github.com/MehediMK/Django-REST-APIs-with-JWT-Authentication?source=post_page-----28efa84666fe--------------------------------------- )
-- Make readme.txt
+- Revise Requirements.txt
 - Implement database-level integrity
 
 In the near future:
