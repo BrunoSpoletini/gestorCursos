@@ -4,6 +4,7 @@ To do's:
 - Health endpoint
 - Requirements.txt (example: https://github.com/MehediMK/Django-REST-APIs-with-JWT-Authentication?source=post_page-----28efa84666fe--------------------------------------- )
 - Make readme.txt
+- Implement database-level integrity
 
 In the near future:
 - Frontend using react

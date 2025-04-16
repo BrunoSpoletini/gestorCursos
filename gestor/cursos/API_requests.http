@@ -52,9 +52,9 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST enroll course
 POST http://127.0.0.1:8000/api/enroll/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzU2NTQwLCJpYXQiOjE3NDQ3NTI5NDAsImp0aSI6IjViZDMwY2RhYmJmMTRhZTliZDExZGEzYzI2M2YzZGEyIiwidXNlcl9pZCI6MX0.BgvP6nwXH4Wqb0ZmlJzi2tlL0V8uBzw2yKLJ8cKm27k
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0ODA3Njg3LCJpYXQiOjE3NDQ4MDQwODcsImp0aSI6IjY3NDk5MzQ5OWU0OTQ1ZDJhZTI1NTIwNDc1MzlkYThhIiwidXNlcl9pZCI6MX0.U66TsVs-9yeeM1SCP09pVZXLibFttTlLJVtr_Gr--pk
 
-{"course": 1}
+{"course": 100}
 
 ### GET enrollments list
 GET http://127.0.0.1:8000/api/my-enrollments/ HTTP/1.1
@@ -68,10 +68,10 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST grade a student
 POST http://127.0.0.1:8000/api/grades/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzY5MjUzLCJpYXQiOjE3NDQ3NjU2NTMsImp0aSI6IjAzNzA1NDllM2Y3NzQ3NWM4MmE4MGY3NGY2ZWRiYWUzIiwidXNlcl9pZCI6MX0.PybiX3D376tVncGxpkGSXfGSTZOnOKX8bdqgfEOP2y0
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0ODA3Njg3LCJpYXQiOjE3NDQ4MDQwODcsImp0aSI6IjY3NDk5MzQ5OWU0OTQ1ZDJhZTI1NTIwNDc1MzlkYThhIiwidXNlcl9pZCI6MX0.U66TsVs-9yeeM1SCP09pVZXLibFttTlLJVtr_Gr--pk
 
 {
-    "enrollment": 12,
+    "enrollment": 13,
     "score": 10,
     "comment": "loreipsum note"
 }
@@ -82,4 +82,4 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ### GET grades list for a course (instructor)
 GET http://127.0.0.1:8000/api/grades/course/2/ HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0ODA3Njg3LCJpYXQiOjE3NDQ4MDQwODcsImp0aSI6IjY3NDk5MzQ5OWU0OTQ1ZDJhZTI1NTIwNDc1MzlkYThhIiwidXNlcl9pZCI6MX0.U66TsVs-9yeeM1SCP09pVZXLibFttTlLJVtr_Gr--pk

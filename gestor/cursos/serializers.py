@@ -33,6 +33,13 @@ class CourseSerializer(serializers.ModelSerializer):
 class EnrollmentSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(read_only=True)
     created_at = serializers.DateTimeField(read_only=True)
+    course = serializers.PrimaryKeyRelatedField(
+        queryset=Course.objects.all(),
+        error_messages={
+            'does_not_exist': "Course does not exist.",
+            'invalid': "Invalid course."
+        }
+    )
 
     class Meta:
         model = Enrollment
@@ -53,6 +60,17 @@ class EnrollmentSerializer(serializers.ModelSerializer):
 
 class GradesSerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(read_only=True)
+    enrollment = serializers.PrimaryKeyRelatedField(
+        queryset=Enrollment.objects.all(),
+        validators=[ 
+            UniqueValidator(queryset=Grade.objects.all(),
+            message="Grade for this enrollment already exists.") 
+        ],
+        error_messages={
+            'does_not_exist': "Enrollment does not exist.",
+            'invalid': "Invalid enrollment."
+        }
+    )
 
     def validate_enrollment(self, enrollment):
         user = self.context['request'].user
