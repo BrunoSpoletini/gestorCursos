@@ -21,17 +21,17 @@ The goal is to demonstrate solid knowledge of:
 
    ```bash
    git clone https://github.com/BrunoSpoletini/gestorCursos.git
+   cd gestorCursos
    ```
 
-2. Navigate to the project directory:
+2. Create and enter your virtual enviroment:
 
    ```bash
-   cd gestorCursos
    python3 -m venv .venv
    source .venv/bin/activate (*linux) or .venv\Scripts\activate (*Windows)
-   copy .venv_template .venv
+   copy .env_template .env
    ```
-Then complete the .env file with your PosgreSQL database username and password
+Then complete the .env file with your PosgreSQL database parameters.
 
 3. Install the dependencies:
 
@@ -39,10 +39,11 @@ Then complete the .env file with your PosgreSQL database username and password
    pip install -r requirements.txt
    ```
 
-4. Apply migrations:
+4. Create database and apply migrations:
 
    ```bash
    cd gestor
+   python databaseSetup.py
    python manage.py makemigrations
    python manage.py migrate
    ```
