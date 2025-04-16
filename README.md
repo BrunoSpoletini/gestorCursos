@@ -29,7 +29,7 @@ The goal is to demonstrate solid knowledge of:
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate (*linux) or .venv\Scripts\activate (*Windows)
-   copy .env_template .env
+   cp .env_template .env
    ```
 Then complete the .env file with your PosgreSQL database parameters.
 
