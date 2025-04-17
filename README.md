@@ -42,8 +42,8 @@ Then complete the .env file with your PosgreSQL database parameters.
 4. Create database and apply migrations:
 
    ```bash
-   cd gestor
    python dbSetup.py
+   cd gestor
    python manage.py makemigrations
    python manage.py migrate
    ```
@@ -53,7 +53,7 @@ Then complete the .env file with your PosgreSQL database parameters.
    python manage.py runserver
    ```
    
-7. Test your API endpoints using tools like Postman.
+7. Test your API endpoints using tools like Postman or the API_requests.http file with the Rest Client VsCode extension.
 
 ### Features:
 - Registration and login with JWT
