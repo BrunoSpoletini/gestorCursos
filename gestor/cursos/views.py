@@ -56,7 +56,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     Allows instructors to create a new course
     """
 
-    queryset = Course.objects.all()
+    queryset = Course.objects.all().order_by("-id")
     serializer_class = CourseSerializer
     authentication_classes = [JWTAuthentication]
 
@@ -92,7 +92,7 @@ class EnrollmentsUserView(generics.ListAPIView):
     permission_classes = [IsAdmin | IsStudent]
 
     def get_queryset(self):
-        return Enrollment.objects.filter(user=self.request.user)
+        return Enrollment.objects.filter(user=self.request.user).order_by("-id")
 
 
 # Grade Endpoints
@@ -102,7 +102,7 @@ class GradeInstructorViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     Allows instructors to create a new grade
     """
 
-    queryset = Grade.objects.all()
+    queryset = Grade.objects.all().order_by("-id")
     serializer_class = GradesSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin | IsInstructor]
@@ -139,4 +139,4 @@ class GradeStudentView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Grade.objects.filter(enrollment__user=user)
+        return Grade.objects.filter(enrollment__user=user).order_by("-id")

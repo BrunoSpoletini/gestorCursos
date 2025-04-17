@@ -5,7 +5,7 @@ POST http://127.0.0.1:8000/api/register/ HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Laura", 
+    "username": "Albert", 
     "password": "pass", 
     "role": "admin"
 }
@@ -52,9 +52,9 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST enroll course
 POST http://127.0.0.1:8000/api/enroll/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0ODA3Njg3LCJpYXQiOjE3NDQ4MDQwODcsImp0aSI6IjY3NDk5MzQ5OWU0OTQ1ZDJhZTI1NTIwNDc1MzlkYThhIiwidXNlcl9pZCI6MX0.U66TsVs-9yeeM1SCP09pVZXLibFttTlLJVtr_Gr--pk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTA2MDA2LCJpYXQiOjE3NDQ5MDI0MDYsImp0aSI6ImYyYmNkN2M5OGUwZjQ1NWU5M2M1NGRiNzg1OGQ5ZjE5IiwidXNlcl9pZCI6MX0.YyEBJy5QIyVzZ_KlJVfxym_W43p3G-w-yaADHdhCfY8
 
-{"course": 100}
+{"course": 2}
 
 ### GET enrollments list
 GET http://127.0.0.1:8000/api/my-enrollments/ HTTP/1.1
@@ -82,4 +82,4 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ### GET grades list for a course (instructor)
 GET http://127.0.0.1:8000/api/grades/course/2/ HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0ODA3Njg3LCJpYXQiOjE3NDQ4MDQwODcsImp0aSI6IjY3NDk5MzQ5OWU0OTQ1ZDJhZTI1NTIwNDc1MzlkYThhIiwidXNlcl9pZCI6MX0.U66TsVs-9yeeM1SCP09pVZXLibFttTlLJVtr_Gr--pk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTA3OTg0LCJpYXQiOjE3NDQ5MDQzODQsImp0aSI6IjE1M2UwZjMyZDJmYzRiNzc4NWJiMzU2NjBjMWQ5M2YzIiwidXNlcl9pZCI6MX0.vke8VWM5CFTkgCftKF6KL3i7KRQqbjMjhL0wYo4iWZk
