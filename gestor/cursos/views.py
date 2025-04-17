@@ -5,6 +5,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema, OpenApiParameter
+
 from .models import Course, Enrollment, Grade
 
 # Local imports
@@ -107,9 +110,9 @@ class GradeInstructorViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin | IsInstructor]
 
-    @action(detail=False, methods=["get"], url_path="course/(?P<course_id>[^/.]+)")
+    @action(detail=False, methods=["GET"], url_path="course/(?P<course_id>[^/.]+)")
     def grades_by_course(self, request, course_id=None):
-        """ "
+        """
         GET /api/grades/course/<int:pk>/ - Instructor
         Returns a list of grades for a specific course created by the instructor
         """
