@@ -32,7 +32,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ### GET course list
 GET http://127.0.0.1:8000/api/courses/ HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTE2OTg5LCJpYXQiOjE3NDQ5MTMzODksImp0aSI6IjA0NWE1ZDg1YzM2YjQ5ODM5NmQ5YTZmMzFhZmY2YjViIiwidXNlcl9pZCI6MX0.9Q8XlF_4BrrlCMRDyRZtl9S4Id4tfmIVMiHPCDrqJ7w
 
 ### POST create course
 POST http://127.0.0.1:8000/api/courses/ HTTP/1.1
