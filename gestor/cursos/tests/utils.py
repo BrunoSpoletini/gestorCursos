@@ -67,7 +67,7 @@ class Utils():
             "score": score,
             "comment": comment
         }
-        url = reverse('grades-instructor-list')
+        url = reverse('instructor-grade')
         response = client.post(url, data=payload, format='json', HTTP_AUTHORIZATION=f"Bearer {token}")
         if response.status_code == 201:
             return response

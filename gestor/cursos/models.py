@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-
 class User(AbstractUser):
     class Roles(models.TextChoices):
         ADMIN = "admin", "Admin"
@@ -26,6 +25,9 @@ class Enrollment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ['user', 'course']
+
     def __str__(self):
         return f"{self.user.username} enrolled in {self.course.name}"
 
@@ -40,6 +42,9 @@ class Grade(models.Model):
     score = models.DecimalField(max_digits=5, decimal_places=1)
     comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['enrollment', 'score']
 
     def __str__(self):
         return f"Grade for {self.enrollment.user.username} in {self.enrollment.course.name}"

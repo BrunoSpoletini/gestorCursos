@@ -8,3 +8,4 @@ psycopg2-binary==2.9.6
 pytest-django==4.11.1
 requests==2.32.3
 django-extensions==3.2.1
+drf-spectacular==0.26.1

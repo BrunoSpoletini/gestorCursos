@@ -6,16 +6,8 @@ info:
 paths:
   /api/courses/:
     get:
-      operationId: courses_list
-      description: |-
-        GET /api/courses/ - Public
-        Returns a list of all courses
-
-        GET /api/courses/<int:pk>/ - Public
-        Returns details of a specific course
-
-        POST /api/courses/ - Instructor
-        Allows instructors to create a new course
+      operationId: api_courses_list
+      description: Allows instructors to create, list and look for courses
       parameters:
       - name: page
         required: false
@@ -24,7 +16,7 @@ paths:
         schema:
           type: integer
       tags:
-      - courses
+      - Course
       security:
       - jwtAuth: []
       - {}
@@ -36,18 +28,10 @@ paths:
                 $ref: '#/components/schemas/PaginatedCourseList'
           description: ''
     post:
-      operationId: courses_create
-      description: |-
-        GET /api/courses/ - Public
-        Returns a list of all courses
-
-        GET /api/courses/<int:pk>/ - Public
-        Returns details of a specific course
-
-        POST /api/courses/ - Instructor
-        Allows instructors to create a new course
+      operationId: api_courses_create
+      description: Allows instructors to create, list and look for courses
       tags:
-      - courses
+      - Course
       requestBody:
         content:
           application/json:
@@ -71,16 +55,8 @@ paths:
           description: ''
   /api/courses/{id}/:
     get:
-      operationId: courses_retrieve
-      description: |-
-        GET /api/courses/ - Public
-        Returns a list of all courses
-
-        GET /api/courses/<int:pk>/ - Public
-        Returns details of a specific course
-
-        POST /api/courses/ - Instructor
-        Allows instructors to create a new course
+      operationId: api_courses_retrieve
+      description: Allows instructors to create, list and look for courses
       parameters:
       - in: path
         name: id
@@ -89,7 +65,7 @@ paths:
         description: A unique integer value identifying this course.
         required: true
       tags:
-      - courses
+      - Course
       security:
       - jwtAuth: []
       - {}
@@ -100,120 +76,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Course'
           description: ''
-    put:
-      operationId: courses_update
-      description: |-
-        GET /api/courses/ - Public
-        Returns a list of all courses
-
-        GET /api/courses/<int:pk>/ - Public
-        Returns details of a specific course
-
-        POST /api/courses/ - Instructor
-        Allows instructors to create a new course
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this course.
-        required: true
-      tags:
-      - courses
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Course'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Course'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Course'
-        required: true
-      security:
-      - jwtAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Course'
-          description: ''
-    patch:
-      operationId: courses_partial_update
-      description: |-
-        GET /api/courses/ - Public
-        Returns a list of all courses
-
-        GET /api/courses/<int:pk>/ - Public
-        Returns details of a specific course
-
-        POST /api/courses/ - Instructor
-        Allows instructors to create a new course
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this course.
-        required: true
-      tags:
-      - courses
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedCourse'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedCourse'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedCourse'
-      security:
-      - jwtAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Course'
-          description: ''
-    delete:
-      operationId: courses_destroy
-      description: |-
-        GET /api/courses/ - Public
-        Returns a list of all courses
-
-        GET /api/courses/<int:pk>/ - Public
-        Returns details of a specific course
-
-        POST /api/courses/ - Instructor
-        Allows instructors to create a new course
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this course.
-        required: true
-      tags:
-      - courses
-      security:
-      - jwtAuth: []
-      responses:
-        '204':
-          description: No response body
   /api/enroll/:
     post:
-      operationId: enroll_create
-      description: |-
-        POST /api/enroll/ - Student
-        Allows students to enroll in a course
+      operationId: api_enroll_create
+      description: Allows students to enroll in a course
       tags:
-      - enroll
+      - Enrollment
       requestBody:
         content:
           application/json:
@@ -237,12 +105,10 @@ paths:
           description: ''
   /api/grades/:
     post:
-      operationId: grades_create
-      description: |-
-        POST /api/grades/ - Instructor
-        Allows instructors to create a new grade
+      operationId: api_grades_create
+      description: Allows instructors to create a new grade
       tags:
-      - grades
+      - Grade
       requestBody:
         content:
           application/json:
@@ -264,20 +130,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/Grades'
           description: ''
-  /api/grades/course/{course_id}/:
+  /api/grades/course/{id}/:
     get:
-      operationId: grades_course_retrieve
-      description: |-
-        GET /api/grades/course/<int:pk>/ - Instructor
-        Returns a list of grades for a specific course created by the instructor
+      operationId: api_grades_course_list
+      description: Returns a list of grades for a specific course created by the instructor
       parameters:
       - in: path
-        name: course_id
+        name: id
         schema:
-          type: string
+          type: integer
         required: true
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
       tags:
-      - grades
+      - Grade
       security:
       - jwtAuth: []
       responses:
@@ -285,14 +155,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Grades'
+                $ref: '#/components/schemas/PaginatedGradesList'
           description: ''
   /api/my-enrollments/:
     get:
-      operationId: my_enrollments_list
-      description: |-
-        GET /api/my-enrollments/ - Student
-        Returns a list of enrollments for the authenticated student
+      operationId: api_my_enrollments_list
+      description: Returns a list of enrollments for the authenticated student
       parameters:
       - name: page
         required: false
@@ -301,7 +169,7 @@ paths:
         schema:
           type: integer
       tags:
-      - my-enrollments
+      - Enrollment
       security:
       - jwtAuth: []
       responses:
@@ -313,10 +181,8 @@ paths:
           description: ''
   /api/my-grades/:
     get:
-      operationId: my_grades_list
-      description: |-
-        GET /api/my-grades/ - Student
-        Returns a list of grades for the authenticated student
+      operationId: api_my_grades_list
+      description: Returns a list of grades for the authenticated student
       parameters:
       - name: page
         required: false
@@ -325,7 +191,7 @@ paths:
         schema:
           type: integer
       tags:
-      - my-grades
+      - Grade
       security:
       - jwtAuth: []
       responses:
@@ -337,13 +203,10 @@ paths:
           description: ''
   /api/register/:
     post:
-      operationId: register_create
-      description: |-
-        "
-        POST /api/register/ - Public
-        Registro de usuario con rol
+      operationId: api_register_create
+      description: Registro de usuario con rol
       tags:
-      - register
+      - Users
       requestBody:
         content:
           application/json:
@@ -366,14 +229,158 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
           description: ''
+  /api/schema/:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
   /api/token/:
     post:
-      operationId: token_create
-      description: |-
-        Takes a set of user credentials and returns an access and refresh JSON web
-        token pair to prove the authentication of those credentials.
+      operationId: api_token_create
+      description: Obtains a JWT token pair (access and refresh tokens) by providing
+        username and password.
       tags:
-      - token
+      - Users
       requestBody:
         content:
           application/json:
@@ -393,39 +400,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/TokenObtainPair'
           description: ''
-  /api/token/refresh/:
-    post:
-      operationId: token_refresh_create
-      description: |-
-        Takes a refresh type JSON web token and returns an access type JSON web
-        token if the refresh token is valid.
-      tags:
-      - token
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TokenRefresh'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TokenRefresh'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TokenRefresh'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TokenRefresh'
-          description: ''
   /api/users/:
     get:
-      operationId: users_list
-      description: |-
-        GET /api/users/ - Admin
-        Lista de todos los usuarios
+      operationId: api_users_list
+      description: Lista todos los usuarios
       parameters:
       - name: page
         required: false
@@ -434,7 +412,7 @@ paths:
         schema:
           type: integer
       tags:
-      - users
+      - Users
       security:
       - jwtAuth: []
       responses:
@@ -588,19 +566,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/User'
-    PatchedCourse:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-        description:
-          type: string
-        created_by:
-          type: string
-          readOnly: true
     RoleEnum:
       enum:
       - admin
@@ -631,18 +596,6 @@ components:
       - password
       - refresh
       - username
-    TokenRefresh:
-      type: object
-      properties:
-        access:
-          type: string
-          readOnly: true
-        refresh:
-          type: string
-          writeOnly: true
-      required:
-      - access
-      - refresh
     User:
       type: object
       properties:

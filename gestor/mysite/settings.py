@@ -102,7 +102,7 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Course managaer API',
     'DESCRIPTION': 'API for managing courses, users, and grades',
     'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
+    'SERVE_INCLUDE_SCHEMA': True,
 }
 
 # Database

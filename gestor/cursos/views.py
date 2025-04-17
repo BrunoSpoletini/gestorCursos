@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics, mixins, permissions, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from drf_spectacular.types import OpenApiTypes
@@ -21,23 +22,24 @@ from .serializers import (
 
 User = get_user_model()
 
-
-# User Endpoints
+@extend_schema(
+    tags=["Users"],
+)
 class UserView(generics.ListAPIView):
     """
-    GET /api/users/ - Admin
-    Lista de todos los usuarios
+    Lista todos los usuarios
     """
-
     queryset = User.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin]
+    http_method_names = ["get"]
 
-
+@extend_schema(
+    tags=["Users"],
+)
 class UserRegisterView(generics.CreateAPIView):
-    """ "
-    POST /api/register/ - Public
+    """
     Registro de usuario con rol
     """
 
@@ -46,22 +48,18 @@ class UserRegisterView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
 
 
-# Course Endpoints
+@extend_schema(
+    tags=["Course"],
+)
 class CourseViewSet(viewsets.ModelViewSet):
     """
-    GET /api/courses/ - Public
-    Returns a list of all courses
-
-    GET /api/courses/<int:pk>/ - Public
-    Returns details of a specific course
-
-    POST /api/courses/ - Instructor
-    Allows instructors to create a new course
+    Allows instructors to create, list and look for courses
     """
-
+    
     queryset = Course.objects.all().order_by("-id")
     serializer_class = CourseSerializer
     authentication_classes = [JWTAuthentication]
+    http_method_names = ["get", "post"]
 
     def get_permissions(self):
         if self.action in ["create"]:
@@ -71,10 +69,11 @@ class CourseViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
 
-# Enrollment Endpoints
+@extend_schema(
+    tags=["Enrollment"],
+)
 class EnrollmentView(generics.CreateAPIView):
     """
-    POST /api/enroll/ - Student
     Allows students to enroll in a course
     """
 
@@ -83,10 +82,11 @@ class EnrollmentView(generics.CreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin | IsStudent]
 
-
+@extend_schema(
+    tags=["Enrollment"],
+)
 class EnrollmentsUserView(generics.ListAPIView):
     """
-    GET /api/my-enrollments/ - Student
     Returns a list of enrollments for the authenticated student
     """
 
@@ -98,10 +98,11 @@ class EnrollmentsUserView(generics.ListAPIView):
         return Enrollment.objects.filter(user=self.request.user).order_by("-id")
 
 
-# Grade Endpoints
-class GradeInstructorViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+@extend_schema(
+    tags=["Grade"],
+)
+class GradeView(generics.CreateAPIView):
     """
-    POST /api/grades/ - Instructor
     Allows instructors to create a new grade
     """
 
@@ -110,29 +111,36 @@ class GradeInstructorViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin | IsInstructor]
 
-    @action(detail=False, methods=["GET"], url_path="course/(?P<course_id>[^/.]+)")
-    def grades_by_course(self, request, course_id=None):
-        """
-        GET /api/grades/course/<int:pk>/ - Instructor
-        Returns a list of grades for a specific course created by the instructor
-        """
-        course = get_object_or_404(Course, pk=course_id)
-        # Check if the instructor is the creator of the course
-        if course.created_by != request.user:
-            return Response(
-                {"detail": "You do not have permission to view these grades."},
-                status=403,
-            )
+@extend_schema(
+    tags=["Grade"],
+)
+class GradeInstructorView(generics.ListAPIView):
+    """
+    Returns a list of grades for a specific course created by the instructor
+    """
 
-        # Retrieve grades for
+    serializer_class = GradesSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdmin | IsInstructor]
+
+    def get(self, request, course_id=None):
+
+        course = get_object_or_404(Course, id=course_id)
+        
+        # # Check instructor permission
+        if course.created_by != request.user and not request.user.is_admin:
+            return Response({"detail": "You don't have permission to view these grades"}, status=403)
+        
+        # # Get grades for this course
         grades = Grade.objects.filter(enrollment__course=course)
-        serializer = self.get_serializer(grades, many=True)
+        serializer = GradesSerializer(grades, many=True)
         return Response(serializer.data)
 
-
+@extend_schema(
+    tags=["Grade"],
+)
 class GradeStudentView(generics.ListAPIView):
     """
-    GET /api/my-grades/ - Student
     Returns a list of grades for the authenticated student
     """
 
@@ -143,3 +151,10 @@ class GradeStudentView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Grade.objects.filter(enrollment__user=user).order_by("-id")
+
+@extend_schema(
+    tags=["Users"],
+    description="Obtains a JWT token pair (access and refresh tokens) by providing username and password.",
+)
+class CustomTokenObtainPairView(TokenObtainPairView):
+    pass

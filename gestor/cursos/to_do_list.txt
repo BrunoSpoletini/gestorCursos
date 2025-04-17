@@ -1,10 +1,7 @@
 To do's:
-- Make a script for creating setting up the posgres database
-- Automated Testing
+- Improve schem.yml with...¿@extend_schema?
 - Consider Docker usage
 - Health endpoint
-- Revise Requirements.txt
-- Implement database-level integrity
 
 In the near future:
 - Frontend using react
