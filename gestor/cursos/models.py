@@ -1,16 +1,16 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.contrib.auth import get_user_model
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 
 class User(AbstractUser):
     class Roles(models.TextChoices):
-        ADMIN = 'admin', 'Admin'
-        STUDENT = 'student', 'Student'
-        INSTRUCTOR = 'instructor', 'Instructor'
+        ADMIN = "admin", "Admin"
+        STUDENT = "student", "Student"
+        INSTRUCTOR = "instructor", "Instructor"
 
     role = models.CharField(max_length=10, choices=Roles.choices)
+
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
@@ -19,7 +19,8 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Enrollment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -27,10 +28,13 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f"{self.user.username} enrolled in {self.course.name}"
-    
+
     def validate_enrollment(self):
-        return not Enrollment.objects.filter(user=self.user, course=self.course).exists()
-    
+        return not Enrollment.objects.filter(
+            user=self.user, course=self.course
+        ).exists()
+
+
 class Grade(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
     score = models.DecimalField(max_digits=5, decimal_places=1)

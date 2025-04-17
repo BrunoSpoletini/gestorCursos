@@ -37,7 +37,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST create course
 POST http://127.0.0.1:8000/api/courses/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0NzUyODkxLCJpYXQiOjE3NDQ3NDkyOTEsImp0aSI6ImI1MTI5Zjc3NWI1NTQ1Mjc4ZWM1NDkyOWUyODdmMGQxIiwidXNlcl9pZCI6MX0.Yksb0zjm392J1p4irUji_02wzRTGnawBGMD5UTPcnhs
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0ODU3MzMzLCJpYXQiOjE3NDQ4NTM3MzMsImp0aSI6IjcyODkwYWNkNDk2NzRkOWY4MWE2ZWNmZDdkMDQxMzM4IiwidXNlcl9pZCI6MX0.yct2pe3JZ05tMF7WfyEs3B_t1t3ZiC2vHo9k-0ZubuM
 
 {"name": "Politica 4", "description": "loreipsumBotomText"}
 
