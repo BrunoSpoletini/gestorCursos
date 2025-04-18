@@ -130,13 +130,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Grades'
           description: ''
-  /api/grades/course/{id}/:
+  /api/grades/course/{course_id}/:
     get:
       operationId: api_grades_course_list
       description: Returns a list of grades for a specific course created by the instructor
       parameters:
       - in: path
-        name: id
+        name: course_id
         schema:
           type: integer
         required: true

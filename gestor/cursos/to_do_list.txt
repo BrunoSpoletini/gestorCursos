@@ -1,7 +1,0 @@
-To do's:
-- Improve schem.yml with...¿@extend_schema?
-- Consider Docker usage
-- Health endpoint
-
-In the near future:
-- Frontend using react

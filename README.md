@@ -149,13 +149,9 @@ Then complete the .env file with your PosgreSQL database parameters.
 ---
 
 ## 🧪 Improvements in progress
-- Unit tests (`pytest` o `unittest`)
-- Dockerfile and docker-compose
-- Swagger/OpenAPI for API documentation
-- Endpoint `/health/` 
-- Database-level checks
-- Creating a requirements.txt
-- Implement frontend
+- Consider Docker usage
+- Frontend using react
+
 
 ---
 
