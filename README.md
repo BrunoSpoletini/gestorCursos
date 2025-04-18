@@ -1,5 +1,15 @@
 # 📚 Course Manager
 
+#### Table of Contents  
+- [Description](#description)
+- [Usage](#usage)
+- [Features](#features)
+- [Business Rules](#-business-rules)
+- [Models Used](#️-models-used)
+- [Authentication](#-autentication)
+- [Endpoints](#-endpoints)
+- [Improvements in progress](#-improvements-in-progress)
+
 ## Description
 
 RESTful API with Django built to manage an online course system, student enrollments, and instructor grading.
