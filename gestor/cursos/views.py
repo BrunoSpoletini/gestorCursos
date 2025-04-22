@@ -27,7 +27,7 @@ User = get_user_model()
 )
 class UserView(generics.ListAPIView):
     """
-    Lista todos los usuarios
+    List all users
     """
     queryset = User.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
@@ -40,7 +40,7 @@ class UserView(generics.ListAPIView):
 )
 class UserRegisterView(generics.CreateAPIView):
     """
-    Registro de usuario con rol
+    Register a user with a role
     """
 
     queryset = User.objects.all().order_by("-date_joined")
