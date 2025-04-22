@@ -7,7 +7,8 @@ paths:
   /api/courses/:
     get:
       operationId: api_courses_list
-      description: Allows instructors to create, list and look for courses
+      description: Allows instructors to create courses; allows everyone to list and
+        look for courses
       parameters:
       - name: page
         required: false
@@ -29,7 +30,8 @@ paths:
           description: ''
     post:
       operationId: api_courses_create
-      description: Allows instructors to create, list and look for courses
+      description: Allows instructors to create courses; allows everyone to list and
+        look for courses
       tags:
       - Course
       requestBody:
@@ -56,7 +58,8 @@ paths:
   /api/courses/{id}/:
     get:
       operationId: api_courses_retrieve
-      description: Allows instructors to create, list and look for courses
+      description: Allows instructors to create courses; allows everyone to list and
+        look for courses
       parameters:
       - in: path
         name: id
@@ -204,7 +207,7 @@ paths:
   /api/register/:
     post:
       operationId: api_register_create
-      description: Registro de usuario con rol
+      description: Register a user with a role
       tags:
       - Users
       requestBody:
@@ -403,7 +406,7 @@ paths:
   /api/users/:
     get:
       operationId: api_users_list
-      description: Lista todos los usuarios
+      description: List all users
       parameters:
       - name: page
         required: false

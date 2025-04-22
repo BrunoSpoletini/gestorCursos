@@ -53,7 +53,7 @@ class UserRegisterView(generics.CreateAPIView):
 )
 class CourseViewSet(viewsets.ModelViewSet):
     """
-    Allows instructors to create, list and look for courses
+    Allows instructors to create courses; allows everyone to list and look for courses
     """
     
     queryset = Course.objects.all().order_by("-id")
