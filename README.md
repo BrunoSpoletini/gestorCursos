@@ -1,6 +1,16 @@
 # 📚 Course Manager
 
-## ✨ Description
+#### Table of Contents  
+- [Description](#description)
+- [Usage](#usage)
+- [Features](#features)
+- [Business Rules](#-business-rules)
+- [Models Used](#️-models-used)
+- [Authentication](#-autentication)
+- [Endpoints](#-endpoints)
+- [Improvements in progress](#-improvements-in-progress)
+
+## Description
 
 RESTful API with Django built to manage an online course system, student enrollments, and instructor grading.
 For now, the focus is on the backend logic, with plans to implement a frontend in the future.
@@ -52,8 +62,13 @@ Then complete the .env file with your PosgreSQL database parameters.
    ```bash
    python manage.py runserver
    ```
-   
-7. Test your API endpoints using tools like Postman or the API_requests.http file with the Rest Client VsCode extension.
+   And check the available endpoints on the [API Schema](https://localhost:8000/) once the server is up and running.
+7. To run Unit Tests, stop the server and type:
+   ```bash
+   pytest
+   ```
+8. You can also test the API endpoints using tools like Postman or the API_requests.http file with the Rest Client VsCode extension.
+
 
 ### Features:
 - Registration and login with JWT
