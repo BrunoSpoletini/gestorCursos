@@ -62,7 +62,7 @@ Then complete the .env file with your PosgreSQL database parameters.
    ```bash
    python manage.py runserver
    ```
-   And check the available endpoints on the [API Schema](https://localhost:8000/) once the server is up and running.
+   And check the available endpoints on the [API Schema](http://localhost:8000/) once the server is up and running.
 7. To run Unit Tests, stop the server and type:
    ```bash
    pytest
