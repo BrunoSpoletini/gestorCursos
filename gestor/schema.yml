@@ -160,6 +160,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedGradesList'
           description: ''
+  /api/my-courses-enrollments/:
+    get:
+      operationId: api_my_courses_enrollments_list
+      description: Returns a list of enrollments for the courses of the authenticated
+        instructor
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - Enrollment
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEnrollmentList'
+          description: ''
   /api/my-enrollments/:
     get:
       operationId: api_my_enrollments_list
@@ -203,6 +226,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedGradesList'
+          description: ''
+  /api/my-user/:
+    get:
+      operationId: api_my_user_retrieve
+      description: Returns the data of the authenticated user
+      tags:
+      - Users
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
           description: ''
   /api/register/:
     post:
@@ -388,20 +426,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TokenObtainPair'
+              $ref: '#/components/schemas/CustomTokenObtainPair'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/TokenObtainPair'
+              $ref: '#/components/schemas/CustomTokenObtainPair'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/TokenObtainPair'
+              $ref: '#/components/schemas/CustomTokenObtainPair'
         required: true
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TokenObtainPair'
+                $ref: '#/components/schemas/CustomTokenObtainPair'
           description: ''
   /api/users/:
     get:
@@ -445,6 +483,18 @@ components:
       - description
       - id
       - name
+    CustomTokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - password
+      - username
     Enrollment:
       type: object
       properties:
@@ -579,26 +629,6 @@ components:
         * `admin` - Admin
         * `student` - Student
         * `instructor` - Instructor
-    TokenObtainPair:
-      type: object
-      properties:
-        username:
-          type: string
-          writeOnly: true
-        password:
-          type: string
-          writeOnly: true
-        access:
-          type: string
-          readOnly: true
-        refresh:
-          type: string
-          readOnly: true
-      required:
-      - access
-      - password
-      - refresh
-      - username
     User:
       type: object
       properties:

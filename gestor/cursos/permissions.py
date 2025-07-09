@@ -4,14 +4,19 @@ from rest_framework.permissions import BasePermission
 
 User = get_user_model()
 
-class IsInstructor(BasePermission):
+class IsAuthenticated(BasePermission):
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == User.Roles.INSTRUCTOR
+        return request.user.is_authenticated
 
-class IsStudent(BasePermission):
+class IsInstructor(IsAuthenticated):
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == User.Roles.STUDENT
+        return super().has_permission(request, view) and request.user.role == User.Roles.INSTRUCTOR
+            
+class IsStudent(IsAuthenticated):
+    def has_permission(self, request, view):
+        return super().has_permission(request, view) and request.user.role == User.Roles.STUDENT
 
-class IsAdmin(BasePermission):
+class IsAdmin(IsAuthenticated):
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == User.Roles.ADMIN
+        return super().has_permission(request, view) and request.user.role == User.Roles.ADMIN    
+

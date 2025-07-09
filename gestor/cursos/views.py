@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, mixins, permissions, viewsets
 from rest_framework.decorators import action
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -12,7 +13,7 @@ from drf_spectacular.utils import extend_schema, OpenApiParameter
 from .models import Course, Enrollment, Grade
 
 # Local imports
-from .permissions import IsAdmin, IsInstructor, IsStudent
+from .permissions import IsAdmin, IsInstructor, IsStudent, IsAuthenticated
 from .serializers import (
     CourseSerializer,
     EnrollmentSerializer,
@@ -47,6 +48,23 @@ class UserRegisterView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
 
+@extend_schema(
+    tags=["Users"],
+)
+class UserProfileView(APIView):
+    """
+    Returns the data of the authenticated user
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    http_method_names = ["get"]
+
+    def get(self, request, format=None):
+        user = get_object_or_404(User, id=request.user.id)
+        serializer = self.serializer_class(user)
+        return Response(serializer.data)
 
 @extend_schema(
     tags=["Course"],
@@ -97,6 +115,24 @@ class EnrollmentsUserView(generics.ListAPIView):
     def get_queryset(self):
         return Enrollment.objects.filter(user=self.request.user).order_by("-id")
 
+
+@extend_schema(
+    tags=["Enrollment"],
+)
+class EnrollmentsInstructorView(generics.ListAPIView):
+    """
+    Returns a list of enrollments for the courses of the authenticated instructor
+    """
+
+    serializer_class = EnrollmentSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdmin | IsInstructor]
+
+    def get_queryset(self):
+        # Get the instructor's courses
+        courses = Course.objects.filter(created_by=self.request.user)
+        # Get the enrollments for those courses
+        return Enrollment.objects.filter(course__in=courses).order_by("-id")
 
 @extend_schema(
     tags=["Grade"],

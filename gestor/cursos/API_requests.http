@@ -5,16 +5,16 @@ POST http://127.0.0.1:8000/api/register/ HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Albert", 
-    "password": "pass", 
-    "role": "admin"
+    "username": "student", 
+    "password": "asdasdasd", 
+    "role": "student"
 }
 
 ### POST Requesting a token
 POST http://127.0.0.1:8000/api/token/ HTTP/1.1
 content-type: application/json
 
-{"username": "admin", "password": "admin"}
+{"username": "instructor", "password": "asdasdasd"}
 
 ### POST Token refresh
 POST http://127.0.0.1:8000/api/token/refresh/ HTTP/1.1
@@ -52,9 +52,9 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST enroll course
 POST http://127.0.0.1:8000/api/enroll/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0OTA2MDA2LCJpYXQiOjE3NDQ5MDI0MDYsImp0aSI6ImYyYmNkN2M5OGUwZjQ1NWU5M2M1NGRiNzg1OGQ5ZjE5IiwidXNlcl9pZCI6MX0.YyEBJy5QIyVzZ_KlJVfxym_W43p3G-w-yaADHdhCfY8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ2NDU3MDE1LCJpYXQiOjE3NDY0NTM0MTUsImp0aSI6IjljZTMyNTJhYmFkYjRkZTE5YWZkNmM0NzRhMTIyMzIzIiwidXNlcl9pZCI6NTksInJvbGUiOiJzdHVkZW50In0.8DXSdPOd3vKvSTaaGbgv5gxBTebnDMOUPr5fttxvyyA
 
-{"course": 2}
+{"course": 4}
 
 ### GET enrollments list
 GET http://127.0.0.1:8000/api/my-enrollments/ HTTP/1.1
@@ -68,12 +68,12 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 ### POST grade a student
 POST http://127.0.0.1:8000/api/grades/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0ODA3Njg3LCJpYXQiOjE3NDQ4MDQwODcsImp0aSI6IjY3NDk5MzQ5OWU0OTQ1ZDJhZTI1NTIwNDc1MzlkYThhIiwidXNlcl9pZCI6MX0.U66TsVs-9yeeM1SCP09pVZXLibFttTlLJVtr_Gr--pk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ2NDU4OTgyLCJpYXQiOjE3NDY0NTUzODIsImp0aSI6ImFkYjgyN2NjZTAyYTRlNjU4YTJiOTZkYzFlMGU1NDZkIiwidXNlcl9pZCI6NTgsInJvbGUiOiJpbnN0cnVjdG9yIn0.HiInhMzf_uuAZbluSV3pxdfw6VftowPAjwmqCs3-2AQ
 
 {
-    "enrollment": 13,
-    "score": 10,
-    "comment": "loreipsum note"
+    "enrollment": 3,
+    "score": 8.5,
+    "comment": "Good job!"
 }
 
 ### GET grades list for a student (student)
